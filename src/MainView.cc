@@ -150,7 +150,7 @@ void MainView::arrowLeft ()
 
 void MainView::selectActive ()
 {
-  // Clear any curent selection
+  // Find any curent selection
   auto oldSelected = std::find_if (m_nodes.begin (),
                                    m_nodes.end (),
                                    [] (const Nodes::value_type& v)
@@ -182,6 +182,34 @@ void MainView::selectActive ()
     spdlog::info ("do nothing...because nothing selected");
   }
   draw (m_viewTopNode);
+}
+
+void MainView::diffSelectedAndActive ()
+{
+  // Find any curent selection
+  auto selectedIter = std::find_if (m_nodes.begin (),
+                                    m_nodes.end (),
+                                    [] (const Nodes::value_type& v)
+                                      {
+                                        return v.isSelected ();
+                                      });
+
+  if (selectedIter == m_nodes.end ())
+  {
+    status ("No object selected to diff against active");
+    return;
+  }
+
+  if (selectedIter == m_activeNode)
+  {
+    status ("Selected and active are the same, nothing to diff");
+    return;
+  }
+
+  std::ostringstream strm;
+  strm << "Diff selected=" << selectedIter->commitId() << " vs "
+       << "active=" << m_activeNode->commitId ();
+  status (strm.str ().c_str ());
 }
   
 void MainView::draw (NodeIter iter)

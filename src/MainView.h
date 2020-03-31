@@ -23,10 +23,8 @@ public:
   // page down
   // page up
 
-  // select
   void selectActive ();
-  
-  // diff
+  void diffSelectedAndActive ();
 
 
 private:

@@ -120,6 +120,13 @@ void MainWindow::runForever ()
     case KEY_RIGHT: m_mainView->arrowRight (); break;
     case KEY_LEFT:  m_mainView->arrowLeft ();  break;
 
+    case 'd': // fall through
+    case 'D':
+    {
+      m_mainView->diffSelectedAndActive (); break;
+    }
+    break;
+
     case 's': // fall through
     case 'S':
     {
