@@ -18,9 +18,11 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: self-hosted
-    container:
-      image: alpine:latest
+    #runs-on: self-hosted
+    #container:
+    #  image: alpine:latest
+
+    runs-on: codebuild-test-codebuild-twig-again-${{ github.run_id }}-${{ github.run_attempt }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,5 +36,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
+          uname -a 
           echo Add other actions to build,
           echo test, and deploy your project.
