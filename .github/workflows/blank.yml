@@ -39,3 +39,11 @@ jobs:
           uname -a 
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: "Configure AWS Credentials" Action for GitHub Actions
+        # You may pin to the exact commit or the version.
+        # uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          # AWS Region, e.g. us-east-2
+          aws-region: us-east-1
